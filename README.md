@@ -80,15 +80,9 @@ The author is [Chris Kinsman](https://github.com/chriskinsman)
 
   [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/express.svg?style=flat
-[npm-url]: https://npmjs.org/package/express
-[downloads-image]: https://img.shields.io/npm/dm/express.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/redis-ratelimit.svg?style=flat
+[npm-url]: https://npmjs.org/package/redis-ratelimit
+[downloads-image]: https://img.shields.io/npm/dm/redis-ratelimit.svg?style=flat
 [downloads-url]: https://npmjs.org/package/express
-[travis-image]: https://img.shields.io/travis/strongloop/express.svg?style=flat
-[travis-url]: https://travis-ci.org/strongloop/express
-[coveralls-image]: https://img.shields.io/coveralls/strongloop/express.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/strongloop/express?branch=master
-[gratipay-image-visionmedia]: https://img.shields.io/gratipay/visionmedia.svg?style=flat
-[gratipay-url-visionmedia]: https://gratipay.com/visionmedia/
-[gratipay-image-dougwilson]: https://img.shields.io/gratipay/dougwilson.svg?style=flat
-[gratipay-url-dougwilson]: https://gratipay.com/dougwilson/
+[travis-image]: https://img.shields.io/travis/chriskinsman/redis-ratelimit.svg?style=flat
+[travis-url]: https://travis-ci.org/chriskinsman/redis-ratelimit
