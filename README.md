@@ -83,6 +83,6 @@ The author is [Chris Kinsman](https://github.com/chriskinsman)
 [npm-image]: https://img.shields.io/npm/v/redis-ratelimit.svg?style=flat
 [npm-url]: https://npmjs.org/package/redis-ratelimit
 [downloads-image]: https://img.shields.io/npm/dm/redis-ratelimit.svg?style=flat
-[downloads-url]: https://npmjs.org/package/express
-[travis-image]: https://travis-ci.org/chriskinsman/redis-ratelimit.svg
+[downloads-url]: https://npmjs.org/package/redis-ratelimit
+[travis-image]: https://img.shields.io/travis/chriskinsman/redis-ratelimit.svg?style=flat
 [travis-url]: https://travis-ci.org/chriskinsman/redis-ratelimit
