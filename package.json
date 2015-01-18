@@ -1,0 +1,34 @@
+{
+  "name": "redis-ratelimit",
+  "version": "0.0.1",
+  "description": "Sliding window rate limiter based on redis sorted sets",
+  "main": "index.js",
+  "scripts": {
+    //"test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chriskinsman/redis-ratelimit"
+  },
+  "keywords": [
+    "rate",
+    "limit",
+    "ratelimit",
+    "redis",
+    "sorted",
+    "set"
+  ],
+  "author": "Chris Kinsman",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/chriskinsman/redis-ratelimit/issues"
+  },
+  "dependencies": {
+    "redis": "~0.12.1",
+    "async": "~0.9.0",
+    "hiredis": "~0.1.17"
+  },
+  "devDependencies": {
+    "mocha": "~2.1.0"
+  }
+}
