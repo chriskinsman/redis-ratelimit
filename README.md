@@ -72,6 +72,10 @@ but a sliding window
 occurred limited will be set to true.  If limited returns true the call to check() does not count against
 the rate limit.
 
+### count(key, callback)
+
+Returns the number of calls that are currently counting against the rate limit.
+
 ## People
 
 The author is [Chris Kinsman](https://github.com/chriskinsman)

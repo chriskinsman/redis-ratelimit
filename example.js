@@ -7,6 +7,9 @@ async.doWhilst(function(done) {
         if(limited)
         {
             console.info(new Date().toISOString() + ':Rate limited');
+            ratelimit.count('counter', function(err, count) {
+                console.info("Calls counting against limit: " + count);
+            });
             setTimeout(done, 1000*5);
         }
         else

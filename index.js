@@ -17,21 +17,40 @@ RateLimit.configure = function(port, host, options) {
     redisClient = redis.createClient(port, host, options);
 };
 
-RateLimit.check = function(key, windowInSeconds, limit, callback) {
+function _checkRedisClient() {
     if(!redisClient)
     {
         redisClient = redis.createClient(defaultPort, defaultHost);
     }
+}
+
+function _expire(key, windowInSeconds, callback) {
+    _checkRedisClient();
 
     var now = new Date().getTime();
     var expires = now - (windowInSeconds * 1000);
 
+    redisClient.zremrangebyscore(key, '-inf', expires, callback);
+}
+
+function _getCardinality(key, callback) {
+    _checkRedisClient();
+    redisClient.zcard(key, callback);
+}
+
+function _addCall(key, callback) {
+    _checkRedisClient();
+    var now = new Date().getTime();
+    redisClient.zadd(key, now, now, callback);
+}
+
+RateLimit.check = function(key, windowInSeconds, limit, callback) {
     async.series({
         delete: function(done) {
-            redisClient.zremrangebyscore(key, '-inf', expires, done);
+            _expire(key, windowInSeconds, done);
         },
         cardinality: function(done) {
-            redisClient.zcard(key, done);
+            _getCardinality(key, done);
         }
     }, function(err, results) {
         // If we have an error default to limited
@@ -43,8 +62,8 @@ RateLimit.check = function(key, windowInSeconds, limit, callback) {
         {
             if(results.cardinality < limit)
             {
-                redisClient.zadd(key, now, now, function(err) {
-                    return callback(null, false)
+                _addCall(key, function(err) {
+                    return callback(err, false);
                 });
             }
             else
@@ -53,6 +72,10 @@ RateLimit.check = function(key, windowInSeconds, limit, callback) {
             }
         }
     });
+};
+
+RateLimit.count = function(key, callback) {
+    _getCardinality(key, callback);
 };
 
 module.exports = RateLimit;
