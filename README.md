@@ -76,6 +76,12 @@ the rate limit.
 
 Returns the number of calls that are currently counting against the rate limit.
 
+__Arguments__
+
+* `key` - Unique key the rate limit is associated with
+* `callback(err, count)` - A callback which returns the count of calls counting against the rate limit.
+
+
 ## People
 
 The author is [Chris Kinsman](https://github.com/chriskinsman)
