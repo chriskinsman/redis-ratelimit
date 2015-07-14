@@ -1,6 +1,6 @@
 {
   "name": "redis-ratelimit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Sliding window rate limiter based on redis sorted sets",
   "main": "index.js",
   "scripts": {
