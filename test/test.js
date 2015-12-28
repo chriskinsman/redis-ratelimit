@@ -19,7 +19,7 @@ describe('Rate Limit', function(){
                 {
                     console.info("Count");
                     count++;
-                    done();
+                    process.nextTick(done);
                 }
             });
         }, function() { return count < 3;},function(err) {
@@ -37,7 +37,7 @@ describe('Rate Limit', function(){
                 {
                     console.info("Rate Limited");
                     rateLimited = true;
-                    done();
+                    process.nextTick(done);
                 }
                 else
                 {
