@@ -26,7 +26,7 @@
   "dependencies": {
     "redis": "~0.12.1",
     "async": "~0.9.0",
-    "hiredis": "~0.1.17"
+    "hiredis": "~0.4.1"
   },
   "devDependencies": {
     "mocha": "~2.1.0"
