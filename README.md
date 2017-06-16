@@ -47,12 +47,7 @@ $ npm install redis-ratelimit
   * Fixed window using simple counter with expiration
 
 ## Documentation
-
-### slidingWindow
-
-The sliding window implementation
-
-#### configure(port, host, options)
+### configure(port, host, options)
 
 Optionally configures the underlying redis instance used by the rate limiter.
 
@@ -61,6 +56,10 @@ __Arguments__
 * `port` - Port redis is listening on
 * `host` - Host redis is on
 * `options` - Options hash passed through to underlying redis createClient() call
+
+### slidingWindow
+
+The sliding window implementation
 
 #### check(key, windowInSeconds, limit, callback)
 
@@ -89,16 +88,6 @@ __Arguments__
 ### fixedWindow
 
 The fixed window implementation
-
-#### configure(port, host, options)
-
-Optionally configures the underlying redis instance used by the rate limiter.
-
-__Arguments__
-
-* `port` - Port redis is listening on
-* `host` - Host redis is on
-* `options` - Options hash passed through to underlying redis createClient() call
 
 #### check(key, windowInSeconds, limit, callback)
 
