@@ -1,14 +1,16 @@
 var assert = require('assert');
-var ratelimit = require('./../index');
+var ratelimit = require('./../index').slidingWindow;
 var async = require('async');
+var uuid = require('uuid/v4');
 
-describe('Rate Limit', function(){
+describe('Sliding Window', function(){
     it ('should rate limit', function(done){
         this.timeout(4000);
         var count=0;
         var rateLimited = false;
+        var key = uuid();
         async.doWhilst(function(done) {
-            ratelimit.check('test1', 2, 2, function(err, limited) {
+            ratelimit.check(key, 2, 2, function(err, limited) {
                 if(limited)
                 {
                     console.info("Rate Limited");
@@ -31,8 +33,9 @@ describe('Rate Limit', function(){
         this.timeout(4000);
         var count=0;
         var rateLimited = false;
+        var key = uuid();
         async.doWhilst(function(done) {
-            ratelimit.check('test2', 2, 2, function(err, limited) {
+            ratelimit.check(key, 2, 2, function(err, limited) {
                 if(limited)
                 {
                     console.info("Rate Limited");
