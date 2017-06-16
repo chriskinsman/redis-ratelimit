@@ -1,5 +1,5 @@
 var assert = require('assert');
-var ratelimit = require('./../index').fixedWindow;
+var ratelimit = require('./../index').fixedTimeWindow;
 var async = require('async');
 var uuid = require('uuid/v4');
 
@@ -13,12 +13,12 @@ describe('Fixed Window', function () {
             ratelimit.check(key, 3, 2, function (err, limited) {
                 count++;
                 if (limited) {
-                    console.info("Rate Limited");
+                    //console.info("Rate Limited");
                     rateLimited = true;
                     process.nextTick(done);
                 }
                 else {
-                    console.info("Count");                    
+                    //console.info("Count");                    
                     process.nextTick(done);
                 }
             });
@@ -36,12 +36,12 @@ describe('Fixed Window', function () {
             ratelimit.check(key, 3, 3, function (err, limited) {
                 count++;
                 if (limited) {
-                    console.info("Rate Limited");
+                    //console.info("Rate Limited");
                     rateLimited = true;
                     process.nextTick(done);
                 }
                 else {
-                    console.info("Count");
+                    //console.info("Count");
                     process.nextTick(done);
                 }
             });

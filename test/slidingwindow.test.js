@@ -13,13 +13,13 @@ describe('Sliding Window', function(){
             ratelimit.check(key, 2, 2, function(err, limited) {
                 if(limited)
                 {
-                    console.info("Rate Limited");
+                    //console.info("Rate Limited");
                     rateLimited = true;
                     setTimeout(done,1000);
                 }
                 else
                 {
-                    console.info("Count");
+                    //console.info("Count");
                     count++;
                     process.nextTick(done);
                 }
@@ -38,13 +38,13 @@ describe('Sliding Window', function(){
             ratelimit.check(key, 2, 2, function(err, limited) {
                 if(limited)
                 {
-                    console.info("Rate Limited");
+                    //console.info("Rate Limited");
                     rateLimited = true;
                     process.nextTick(done);
                 }
                 else
                 {
-                    console.info("Count");
+                    //console.info("Count");
                     count++;
                     setTimeout(done, 1000);
                 }
