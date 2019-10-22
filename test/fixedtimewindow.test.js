@@ -72,16 +72,16 @@ describe('Time Window Rate Limit', function () {
             fixedTimeWindow.check(key, 'second', 1, function (err, limited) {
                 count++;
                 if (limited) {
-                    //console.info("Rate Limited");
+                    console.info("Rate Limited");
                     rateLimited = true;
                     process.nextTick(done);
                 }
                 else {
-                    //console.info("Count");
+                    console.info("Count");
                     process.nextTick(done);
                 }
             });
-        }, function () { return count < 3; }, function (err) {
+        }, function (done) { setImmediate(done, null, count < 3); }, function (err) {
             assert(rateLimited, 'Not rate limited');
             done();
         });
@@ -96,16 +96,15 @@ describe('Time Window Rate Limit', function () {
             fixedTimeWindow.check(key, 'second', 1, function (err, limited) {
                 count++;
                 if (limited) {
-                    //console.info("Rate Limited");
                     rateLimited = true;
                     process.nextTick(done);
                 }
                 else {
-                    //console.info("Count");
+                    console.info("Count");
                     setTimeout(done, 1100);
                 }
             });
-        }, function () { return count < 3; }, function (err) {
+        }, function (done) { setImmediate(done, null, count < 3); }, function (err) {
             assert(!rateLimited, 'Rate limited');
             done();
         });

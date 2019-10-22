@@ -24,7 +24,7 @@ describe('Sliding Window', function(){
                     process.nextTick(done);
                 }
             });
-        }, function() { return count < 3;},function(err) {
+        }, function(done) { setImmediate(done, null, count < 3);},function(err) {
             assert(rateLimited, 'Did not rate limit');
             done();
         });
@@ -49,7 +49,7 @@ describe('Sliding Window', function(){
                     setTimeout(done, 1000);
                 }
             });
-        }, function() { return count < 3;},function(err) {
+        }, function(done) { setImmediate(done, null, count < 3);},function(err) {
             assert(!rateLimited, 'Rate limited');
             done();
         });

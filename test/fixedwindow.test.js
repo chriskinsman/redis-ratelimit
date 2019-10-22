@@ -22,7 +22,7 @@ describe('Fixed Window', function () {
                     process.nextTick(done);
                 }
             });
-        }, function () { return count < 3; }, function (err) {
+        }, function (done) { setImmediate(done, null, count < 3); }, function (err) {
             assert(rateLimited, 'Did not rate limit');
             done();
         });
@@ -45,7 +45,7 @@ describe('Fixed Window', function () {
                     process.nextTick(done);
                 }
             });
-        }, function () { return count < 3; }, function (err) {
+        }, function (done) { setImmediate(done, null, count < 3); }, function (err) {
             assert(!rateLimited, 'Rate limited');
             done();
         });
