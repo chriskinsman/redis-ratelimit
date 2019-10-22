@@ -1,6 +1,6 @@
 {
   "name": "redis-ratelimit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rate limiter using redis - sliding window based on sorted sets and fixed window",
   "main": "index.js",
   "scripts": {
@@ -24,11 +24,10 @@
     "url": "https://github.com/chriskinsman/redis-ratelimit/issues"
   },
   "dependencies": {
-    "async": "~0.9.0",
-    "hiredis": "~0.4.1",
-    "moment": "^2.18.1",
-    "redis": "~0.12.1",
-    "uuid": "^3.1.0"
+    "async": "~3.1.0",
+    "moment": "^2.24.0",
+    "redis": "~2.8.0",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "mocha": "~2.1.0"
