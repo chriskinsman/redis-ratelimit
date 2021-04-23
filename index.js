@@ -7,5 +7,6 @@ RateLimit.fixedWindow = require('./lib/fixedwindow');
 RateLimit.fixedTimeWindow = require('./lib/fixedtimewindow');
 
 RateLimit.configure = redisClient.configure;
+RateLimit.setRedisClient = redisClient.setRedisClient;
 
 module.exports = RateLimit;
