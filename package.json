@@ -24,7 +24,7 @@
     "url": "https://github.com/chriskinsman/redis-ratelimit/issues"
   },
   "dependencies": {
-    "async": "~3.1.0",
+    "async": "~3.2.2",
     "moment": "^2.24.0",
     "redis": "~2.8.0",
     "uuid": "^3.3.3"
