@@ -4,7 +4,7 @@
   "description": "Rate limiter using redis - sliding window based on sorted sets and fixed window",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/jest ./test/"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "jest": "^28.1.2",
-    "mocha": "~10.0.0",
     "uuid": "^8.3.2"
   }
 }

@@ -3,11 +3,14 @@ const ratelimit = require("./../index").slidingWindow;
 
 const { v4: uuid } = require("uuid");
 const timers = require("timers/promises");
+const redisClient = require("../lib/redisclient");
 
-describe("Sliding Window", function () {
-  it("should rate limit", async function () {
-    this.timeout(4000);
+describe("Sliding Window", () => {
+  afterAll(() => {
+    redisClient.close();
+  });
 
+  it("should rate limit", async () => {
     let rateLimited = false;
     const key = uuid();
 
@@ -22,9 +25,7 @@ describe("Sliding Window", function () {
     assert(rateLimited, "Did not rate limit");
   });
 
-  it("should not rate limit", async function () {
-    this.timeout(4000);
-
+  it("should not rate limit", async () => {
     let rateLimited = false;
     const key = uuid();
 

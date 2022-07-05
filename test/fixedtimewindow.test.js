@@ -5,15 +5,16 @@ const timers = require("timers/promises");
 
 const { v4: uuid } = require("uuid");
 const moment = require("moment");
+const redisClient = require("../lib/redisclient");
 
-describe("Time Window Keys", function () {
-  it("second", function (done) {
+describe("Time Window Keys", () => {
+  it("second", (done) => {
     var keyInfo = fixedTimeWindow._calculateKeyInfo(uuid(), "second");
     assert.equal(keyInfo.duration, 1);
     setImmediate(done);
   });
 
-  it("minute", function (done) {
+  it("minute", (done) => {
     var unit = "minute";
     var keyPrefix = uuid();
     var key = keyPrefix + ":" + moment().startOf(unit);
@@ -23,7 +24,7 @@ describe("Time Window Keys", function () {
     setImmediate(done);
   });
 
-  it("hour", function (done) {
+  it("hour", (done) => {
     var unit = "hour";
     var keyPrefix = uuid();
     var key = keyPrefix + ":" + moment().startOf(unit);
@@ -33,7 +34,7 @@ describe("Time Window Keys", function () {
     setImmediate(done);
   });
 
-  it("day", function (done) {
+  it("day", (done) => {
     var unit = "day";
     var keyPrefix = uuid();
     var key = keyPrefix + ":" + moment().startOf(unit);
@@ -43,7 +44,7 @@ describe("Time Window Keys", function () {
     setImmediate(done);
   });
 
-  it("week", function (done) {
+  it("week", (done) => {
     var unit = "week";
     var keyPrefix = uuid();
     var key = keyPrefix + ":" + moment().startOf(unit);
@@ -53,7 +54,7 @@ describe("Time Window Keys", function () {
     setImmediate(done);
   });
 
-  it("month", function (done) {
+  it("month", (done) => {
     var unit = "month";
     var keyPrefix = uuid();
     var key = keyPrefix + ":" + moment().startOf(unit);
@@ -64,9 +65,12 @@ describe("Time Window Keys", function () {
   });
 });
 
-describe("Time Window Rate Limit", function () {
-  it("second should rate limit", async function () {
-    this.timeout(4000);
+describe("Time Window Rate Limit", () => {
+  afterAll(() => {
+    redisClient.close();
+  });
+
+  it("second should rate limit", async () => {
     let rateLimited = false;
     const key = uuid();
 
@@ -80,8 +84,7 @@ describe("Time Window Rate Limit", function () {
     assert(rateLimited, "Did not rate limit");
   });
 
-  it("second should not rate limit", async function () {
-    this.timeout(4000);
+  it("second should not rate limit", async () => {
     let rateLimited = false;
     const key = uuid();
 

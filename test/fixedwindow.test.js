@@ -1,10 +1,14 @@
 const assert = require("assert");
 const ratelimit = require("./../index").fixedWindow;
 const { v4: uuid } = require("uuid");
+const redisClient = require("../lib/redisclient");
 
-describe("Fixed Window", function () {
-  it("should rate limit", async function () {
-    this.timeout(4000);
+describe("Fixed Window", () => {
+  afterAll(() => {
+    redisClient.close();
+  });
+
+  it("should rate limit", async () => {
     let rateLimited = false;
     const key = uuid();
 
@@ -18,8 +22,7 @@ describe("Fixed Window", function () {
     assert(rateLimited, "Did not rate limit");
   });
 
-  it("should not rate limit", async function () {
-    this.timeout(4000);
+  it("should not rate limit", async () => {
     let rateLimited = false;
     const key = uuid();
 
