@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "dayjs": "^1.11.3",
-    "moment": "^2.29.3",
     "redis": "~4.2.0"
   },
   "devDependencies": {

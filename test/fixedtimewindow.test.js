@@ -4,7 +4,7 @@ const fixedTimeWindow = require("./../index").fixedTimeWindow;
 const timers = require("timers/promises");
 
 const { v4: uuid } = require("uuid");
-const moment = require("moment");
+const dayjs = require("dayjs");
 const redisClient = require("../lib/redisclient");
 
 describe("Time Window Keys", () => {
@@ -17,7 +17,7 @@ describe("Time Window Keys", () => {
   it("minute", (done) => {
     var unit = "minute";
     var keyPrefix = uuid();
-    var key = keyPrefix + ":" + moment().startOf(unit);
+    var key = keyPrefix + ":" + dayjs().startOf(unit);
     var keyInfo = fixedTimeWindow._calculateKeyInfo(keyPrefix, unit);
     assert.equal(keyInfo.duration, 60);
     assert.equal(keyInfo.key, key);
@@ -27,7 +27,7 @@ describe("Time Window Keys", () => {
   it("hour", (done) => {
     var unit = "hour";
     var keyPrefix = uuid();
-    var key = keyPrefix + ":" + moment().startOf(unit);
+    var key = keyPrefix + ":" + dayjs().startOf(unit);
     var keyInfo = fixedTimeWindow._calculateKeyInfo(keyPrefix, unit);
     assert.equal(keyInfo.duration, 60 * 60);
     assert.equal(keyInfo.key, key);
@@ -37,7 +37,7 @@ describe("Time Window Keys", () => {
   it("day", (done) => {
     var unit = "day";
     var keyPrefix = uuid();
-    var key = keyPrefix + ":" + moment().startOf(unit);
+    var key = keyPrefix + ":" + dayjs().startOf(unit);
     var keyInfo = fixedTimeWindow._calculateKeyInfo(keyPrefix, unit);
     assert.equal(keyInfo.duration, 24 * 60 * 60);
     assert.equal(keyInfo.key, key);
@@ -47,7 +47,7 @@ describe("Time Window Keys", () => {
   it("week", (done) => {
     var unit = "week";
     var keyPrefix = uuid();
-    var key = keyPrefix + ":" + moment().startOf(unit);
+    var key = keyPrefix + ":" + dayjs().startOf(unit);
     var keyInfo = fixedTimeWindow._calculateKeyInfo(keyPrefix, unit);
     assert.equal(keyInfo.duration, 7 * 24 * 60 * 60);
     assert.equal(keyInfo.key, key);
@@ -57,7 +57,7 @@ describe("Time Window Keys", () => {
   it("month", (done) => {
     var unit = "month";
     var keyPrefix = uuid();
-    var key = keyPrefix + ":" + moment().startOf(unit);
+    var key = keyPrefix + ":" + dayjs().startOf(unit);
     var keyInfo = fixedTimeWindow._calculateKeyInfo(keyPrefix, unit);
     assert.equal(keyInfo.duration, 31 * 24 * 60 * 60);
     assert.equal(keyInfo.key, key);
