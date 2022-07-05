@@ -1,57 +1,42 @@
-var assert = require('assert');
-var ratelimit = require('./../index').slidingWindow;
-var async = require('async');
-var uuid = require('uuid/v4');
+const assert = require("assert");
+const ratelimit = require("./../index").slidingWindow;
 
-describe('Sliding Window', function(){
-    it ('should rate limit', function(done){
-        this.timeout(4000);
-        var count=0;
-        var rateLimited = false;
-        var key = uuid();
-        async.doWhilst(function(done) {
-            ratelimit.check(key, 2, 2, function(err, limited) {
-                if(limited)
-                {
-                    //console.info("Rate Limited");
-                    rateLimited = true;
-                    setTimeout(done,1000);
-                }
-                else
-                {
-                    //console.info("Count");
-                    count++;
-                    process.nextTick(done);
-                }
-            });
-        }, function(done) { setImmediate(done, null, count < 3);},function(err) {
-            assert(rateLimited, 'Did not rate limit');
-            done();
-        });
-    });
-    it ('should not rate limit', function(done) {
-        this.timeout(4000);
-        var count=0;
-        var rateLimited = false;
-        var key = uuid();
-        async.doWhilst(function(done) {
-            ratelimit.check(key, 2, 2, function(err, limited) {
-                if(limited)
-                {
-                    //console.info("Rate Limited");
-                    rateLimited = true;
-                    process.nextTick(done);
-                }
-                else
-                {
-                    //console.info("Count");
-                    count++;
-                    setTimeout(done, 1000);
-                }
-            });
-        }, function(done) { setImmediate(done, null, count < 3);},function(err) {
-            assert(!rateLimited, 'Rate limited');
-            done();
-        });
-    });
+const { v4: uuid } = require("uuid");
+const timers = require("timers/promises");
+
+describe("Sliding Window", function () {
+  it("should rate limit", async function () {
+    this.timeout(4000);
+
+    let rateLimited = false;
+    const key = uuid();
+
+    for (let count = 0; count < 3; count++) {
+      let limited = await ratelimit.check(key, 2, 2);
+      if (limited) {
+        rateLimited = true;
+        await timers.setTimeout(1000);
+      }
+    }
+
+    assert(rateLimited, "Did not rate limit");
+  });
+
+  it("should not rate limit", async function () {
+    this.timeout(4000);
+
+    let rateLimited = false;
+    const key = uuid();
+
+    for (let count = 0; count < 3; count++) {
+      let limited = await ratelimit.check(key, 2, 2);
+      if (limited) {
+        rateLimited = true;
+      } else {
+        await timers.setTimeout(1000);
+      }
+    }
+
+    assert(!rateLimited, "Rate limited");
+  });
 });
