@@ -2,9 +2,8 @@
   "name": "redis-ratelimit",
   "version": "2.0.0",
   "description": "Rate limiter using redis - sliding window based on sorted sets and fixed window",
-  "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest ./test/"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest ./test/"
   },
   "repository": {
     "type": "git",
@@ -18,11 +17,16 @@
     "sorted",
     "set"
   ],
+  "type": "module",
   "author": "Chris Kinsman",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/chriskinsman/redis-ratelimit/issues"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "engineStrict": true,
   "dependencies": {
     "dayjs": "^1.11.3",
     "redis": "~4.2.0"

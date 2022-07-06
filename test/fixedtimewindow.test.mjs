@@ -1,11 +1,12 @@
-const assert = require("assert");
-const fixedTimeWindow = require("./../index").fixedTimeWindow;
+import assert from "assert";
+import fixedTimeWindow from "../lib/fixedtimewindow.mjs";
+import { v4 as uuid } from "uuid";
 
-const timers = require("timers/promises");
+import dayjs from "dayjs";
 
-const { v4: uuid } = require("uuid");
-const dayjs = require("dayjs");
-const redisClient = require("../lib/redisclient");
+import timers from "timers/promises";
+
+import redisClient from "../lib/redisclient.mjs";
 
 describe("Time Window Keys", () => {
   it("second", (done) => {

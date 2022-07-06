@@ -1,11 +1,10 @@
-const assert = require("assert");
-const ratelimit = require("./../index").slidingWindow;
+import assert from "assert";
+import ratelimit from "../lib/fixedwindow.mjs";
+import { v4 as uuid } from "uuid";
 
-const { v4: uuid } = require("uuid");
-const timers = require("timers/promises");
-const redisClient = require("../lib/redisclient");
+import redisClient from "../lib/redisclient.mjs";
 
-describe("Sliding Window", () => {
+describe("Fixed Window", () => {
   afterAll(() => {
     redisClient.close();
   });
@@ -15,10 +14,9 @@ describe("Sliding Window", () => {
     const key = uuid();
 
     for (let count = 0; count < 3; count++) {
-      let limited = await ratelimit.check(key, 2, 2);
+      let limited = await ratelimit.check(key, 3, 2);
       if (limited) {
         rateLimited = true;
-        await timers.setTimeout(1000);
       }
     }
 
@@ -30,11 +28,9 @@ describe("Sliding Window", () => {
     const key = uuid();
 
     for (let count = 0; count < 3; count++) {
-      let limited = await ratelimit.check(key, 2, 2);
+      let limited = await ratelimit.check(key, 3, 3);
       if (limited) {
         rateLimited = true;
-      } else {
-        await timers.setTimeout(1000);
       }
     }
 
