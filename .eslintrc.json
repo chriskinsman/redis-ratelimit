@@ -2,14 +2,14 @@
     "env": {
         "browser": false,
         "commonjs": false,
-        "es6": false,
+        "es6": true,
         "node": true
     },
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": false
         },
-        "sourceType": "script"
+        "sourceType": "module"
     },
     "rules": {
         "no-const-assign": "warn",
